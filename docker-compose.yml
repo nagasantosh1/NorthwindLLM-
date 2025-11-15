@@ -1,0 +1,26 @@
+
+services:
+  backend:
+    build: ./backend
+    env_file:
+      - ./backend/.env
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend/data:/app/data
+    depends_on:
+      - dbseed
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend
+
+  dbseed:
+    image: alpine:3.20
+    volumes:
+      - ./backend/data:/data
+      - ./docker:/seed
+    command: ["/bin/sh","-c","cp -f /seed/Northwind.db /data/Northwind.db && echo 'Northwind.db ready'"]

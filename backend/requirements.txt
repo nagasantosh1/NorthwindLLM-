@@ -1,0 +1,14 @@
+fastapi
+uvicorn[standard]
+pydantic
+python-dotenv
+groq
+httpx
+langgraph
+langchain-core
+sqlparse
+python-dateutil
+pandas
+# DB
+sqlalchemy
+# If using Postgres, also add: psycopg2-binary
